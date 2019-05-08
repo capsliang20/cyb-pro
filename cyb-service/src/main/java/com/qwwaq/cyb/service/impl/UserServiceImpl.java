@@ -1,9 +1,9 @@
-package com.qwwaq.cyb.service.impl.user;
+package com.qwwaq.cyb.service.impl;
 
 
-import com.qwwaq.cyb.entity.user.User;
-import com.qwwaq.cyb.service.api.user.UserService;
-import com.qwwaq.cyb.service.mapper.user.UserMapper;
+import com.qwwaq.cyb.entity.User;
+import com.qwwaq.cyb.service.api.UserService;
+import com.qwwaq.cyb.service.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

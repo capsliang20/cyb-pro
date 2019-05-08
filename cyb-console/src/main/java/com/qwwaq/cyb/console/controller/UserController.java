@@ -1,10 +1,10 @@
-package com.qwwaq.cyb.console.user;
+package com.qwwaq.cyb.console.controller;
 
 import com.qwwaq.cyb.console.util.AccountType;
 import com.qwwaq.cyb.console.util.MessageUtil;
 import com.qwwaq.cyb.entity.ReturnType;
-import com.qwwaq.cyb.entity.user.User;
-import com.qwwaq.cyb.service.api.user.UserService;
+import com.qwwaq.cyb.entity.User;
+import com.qwwaq.cyb.service.api.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -52,7 +52,7 @@ public class UserController {
      */
     @RequestMapping(value = "register", method = RequestMethod.GET)
     ReturnType register(@Param("name") String name, @Param("account") String account, @Param("password") String password, @Param("code") String code, HttpServletRequest httpServletRequest) {
-        log.info("user register. name={}, account={}, password={}, code={}", name, account, password, code);
+        log.info("controller register. name={}, account={}, password={}, code={}", name, account, password, code);
         Map data = new HashMap();
         String verifyCode = redisTemplate.opsForValue().get(account);
         if (code != null && code.equals(verifyCode)) {
@@ -72,7 +72,7 @@ public class UserController {
 
     @RequestMapping(value = "update",method = RequestMethod.GET)
     ReturnType update(@Param("id") Integer id,@Param("name") String name,@Param("introduction") String introduction,@Param("imageAddress") String imageAddress){
-        log.info("update user info : id={}, name={}, introduction={}, imageAddress={}",id,name,introduction,imageAddress );
+        log.info("update controller info : id={}, name={}, introduction={}, imageAddress={}",id,name,introduction,imageAddress );
         User user=new User(id, name, null, null, introduction, imageAddress);
         userService.update(user);
         return ReturnType.ok("更新成功");
@@ -80,7 +80,7 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     ReturnType login(@Param("account") String account, @Param("password") String password, @Param("code") String code, HttpServletRequest httpServletRequest) {
-        log.info("user login. account={}, password={}, code={}", account, password, code);
+        log.info("controller login. account={}, password={}, code={}", account, password, code);
         Map data = new HashMap();
         String verifyCode = redisTemplate.opsForValue().get(account);
         User user = new User();

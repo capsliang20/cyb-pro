@@ -42,7 +42,7 @@ public class CybInterceptor implements HandlerInterceptor {
 //            if(path.equals("/")) {   //访问主页,直接放行
 //                log.info("{} is visiting the index",session.getId());
 //                return true;
-//            }else if(Pattern.matches("/user/.*", path)){ //调用登录注册相关接口，放行
+//            }else if(Pattern.matches("/controller/.*", path)){ //调用登录注册相关接口，放行
 //                log.info("{} is visiting {}",session.getId(),path );
 //                return true;
 //            }

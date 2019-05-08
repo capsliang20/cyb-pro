@@ -29,7 +29,7 @@
     <!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
     <!-- generate proxy for the remote service, then demoService can be used in the same way as the
     local regular interface -->
-    <dubbo:reference id="userService" check="false" interface="com.qwwaq.cyb.service.api.user.UserService"/>
+    <dubbo:reference id="userService" check="false" interface="com.qwwaq.cyb.service.api.UserService"/>
 
 
 </beans>

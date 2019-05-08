@@ -1,7 +1,7 @@
-package com.qwwaq.cyb.service.api.user;
+package com.qwwaq.cyb.service.api;
 
 
-import com.qwwaq.cyb.entity.user.User;
+import com.qwwaq.cyb.entity.User;
 
 public interface UserService {
     Integer insertUser(User user);

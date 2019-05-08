@@ -1,4 +1,5 @@
-package com.qwwaq.cyb.entity.user;
+package com.qwwaq.cyb.entity;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +10,12 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
-    private static final long serialVersionUID = -2023285670801013939L;
+public class Project implements Serializable {
+    private static final long serialVersionUID = 8820678050985046949L;
     private Integer id;
     private String name;
-    private String account;
-    private String password;
     private String introduction;
+    private String detail;
     private String imageAddress;
+    private Integer creator;
 }

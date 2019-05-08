@@ -33,14 +33,14 @@ public class CybConsoleApplication  implements WebMvcConfigurer {
         props.setProperty("mail.transport.protocol", "smtp");// 设置传输协议
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.qq.com");//QQ邮箱的服务器 如果是企业邮箱或者其他邮箱得更换该服务器地址
-        props.put("mail.user", "qwwaq@qq.com");
+        props.put("mail.controller", "qwwaq@qq.com");
         props.put("mail.password", "cjmftubnbpqgbgeb");
         JavaMailSenderImpl mailSender=new JavaMailSenderImpl();
         Authenticator authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 // 用户名、密码
-                String userName = props.getProperty("mail.user");
+                String userName = props.getProperty("mail.controller");
                 String password = props.getProperty("mail.password");
                 return new PasswordAuthentication(userName, password);
             }

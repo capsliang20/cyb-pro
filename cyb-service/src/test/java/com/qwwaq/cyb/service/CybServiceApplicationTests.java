@@ -1,7 +1,6 @@
 package com.qwwaq.cyb.service;
 
-import com.qwwaq.cyb.service.api.user.UserService;
-import com.qwwaq.cyb.service.mapper.user.UserMapper;
+import com.qwwaq.cyb.service.api.UserService;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

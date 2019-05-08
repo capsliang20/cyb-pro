@@ -36,9 +36,9 @@
     <dubbo:protocol name="dubbo" />
 
     <!-- service implementation, as same as regular local bean -->
-    <bean id="userService" class="com.qwwaq.cyb.service.impl.user.UserServiceImpl"/>
+    <bean id="userService" class="com.qwwaq.cyb.service.impl.UserServiceImpl"/>
 
     <!-- declare the service interface to be exported -->
-    <dubbo:service interface="com.qwwaq.cyb.service.api.user.UserService" ref="userService"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.UserService" ref="userService"/>
 
 </beans>

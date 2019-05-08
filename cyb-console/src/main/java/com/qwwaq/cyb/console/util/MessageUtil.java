@@ -38,7 +38,7 @@ public class MessageUtil {
     public static int CACHE_TIME=15;
     private static char[] codeArray={'0','1','2','3','4','5','6','7','8','9'};
     private static Random random=new Random();
-    public static String USER_DIR_TMP_PATH=System.getProperty("user.dir")+"/tmp/";
+    public static String USER_DIR_TMP_PATH=System.getProperty("controller.dir")+"/tmp/";
     public static String NET_PATH="www.qwwaq.com:8088/";
     public static ExecutorService executorService=Executors.newCachedThreadPool();
 
