@@ -16,7 +16,7 @@ import java.io.IOException;
 public class CybServiceApplication {
 
     public static void main(String[] args) throws IOException {
-        SpringApplication.run(CybServiceApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(CybServiceApplication.class, args);
         while(true){
             try{
                 Thread.sleep(Long.MAX_VALUE);
@@ -24,6 +24,7 @@ public class CybServiceApplication {
                 log.info("进程意外中断");
             }
         }
+//        System.in.read();
     }
 
 

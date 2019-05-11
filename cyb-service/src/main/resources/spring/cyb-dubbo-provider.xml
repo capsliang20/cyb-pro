@@ -24,7 +24,7 @@
     <!-- provider's application name, used for tracing dependency relationship -->
     <dubbo:application name="cyb-dubbo-provider" />
 
-    <!--<dubbo:registry address="multicast://127.0.0.1:2181" />-->
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181" />-->
 
 
     <dubbo:metadata-report address="zookeeper://39.108.225.165:2181"/>
@@ -37,8 +37,13 @@
 
     <!-- service implementation, as same as regular local bean -->
     <bean id="userService" class="com.qwwaq.cyb.service.impl.UserServiceImpl"/>
-
     <!-- declare the service interface to be exported -->
     <dubbo:service interface="com.qwwaq.cyb.service.api.UserService" ref="userService"/>
+
+    <bean id="articleService" class="com.qwwaq.cyb.service.impl.ArticleServiceImpl"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.ArticleService" ref="articleService"/>
+
+    <bean id="projectService" class="com.qwwaq.cyb.service.impl.ProjectServiceImpl"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.ProjectService" ref="projectService"/>
 
 </beans>

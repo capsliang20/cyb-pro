@@ -16,19 +16,19 @@ public class ReturnType {
     Map data;
 
     public static ReturnType ok(String msg){
-        return new ReturnType(200,msg,new HashMap());
+        return new ReturnType(1,msg,new HashMap());
     }
 
     public static ReturnType ok(String msg,Map data){
-        return new ReturnType(200,msg,data);
+        return new ReturnType(1,msg,data);
     }
 
     public static ReturnType failure(String msg){
-        return new ReturnType(400,msg,new HashMap());
+        return new ReturnType(0,msg,new HashMap());
     }
 
     public static ReturnType failure(String msg,Map data){
-        return new ReturnType(400,msg,data);
+        return new ReturnType(0,msg,data);
     }
 
 }

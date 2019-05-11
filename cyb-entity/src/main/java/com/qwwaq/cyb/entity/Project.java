@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -17,5 +18,8 @@ public class Project implements Serializable {
     private String introduction;
     private String detail;
     private String imageAddress;
-    private Integer creator;
+    private Integer creatorId;
+    private String creatorName;
+    private Date createDate;
+    private String module;
 }

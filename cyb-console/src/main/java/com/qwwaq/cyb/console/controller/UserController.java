@@ -182,9 +182,11 @@ public class UserController {
 
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
-    ReturnType test(HttpServletRequest httpServletRequest) {
+    ReturnType test(HttpServletRequest httpServletRequest,@Param("testParam")String testParam) {
         HttpSession sesssion = httpServletRequest.getSession();
         System.out.println("sessionId= " + sesssion.getId() + " , account= " + redisTemplate.opsForValue().get(sesssion.getId()));
+        System.out.println(testParam==null);
+        System.out.println(testParam);
         return ReturnType.ok("success");
     }
 

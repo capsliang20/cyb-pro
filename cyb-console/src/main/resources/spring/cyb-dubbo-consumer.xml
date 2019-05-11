@@ -31,5 +31,7 @@
     local regular interface -->
     <dubbo:reference id="userService" check="false" interface="com.qwwaq.cyb.service.api.UserService"/>
 
+    <dubbo:reference id="articleService" check="false" interface="com.qwwaq.cyb.service.api.ArticleService"/>
+    <dubbo:reference id="projectService" check="false" interface="com.qwwaq.cyb.service.api.ProjectService"/>
 
 </beans>
