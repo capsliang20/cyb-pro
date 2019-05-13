@@ -39,6 +39,7 @@
         <dubbo-metadata-report-redis.version>2.7.0</dubbo-metadata-report-redis.version>
         <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
         <dubbo-qos.version>2.7.0</dubbo-qos.version>
+        <fastjson.version>1.2.47</fastjson.version>
     </properties>
 
     <modules>
@@ -113,6 +114,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql-connector-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-metadata-report-redis -->

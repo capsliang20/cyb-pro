@@ -28,9 +28,23 @@ public interface ArticleMapper {
     })
     Article queryArticle(@Param("id") Integer id);
 
-    @Select("select id,title,content,create_date,creator,module from article where module=#{module}")
-    @ResultMap("articleMap")
+    @Select("select id,title,content,module from article where module=#{module}")
+    @Results(id = "simpleArticleMap",value = {
+            @Result(property = "id",column = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
+            @Result(property = "title",column = "title",jdbcType = JdbcType.VARCHAR,javaType = String.class),
+            @Result(property = "content",column = "content",jdbcType = JdbcType.VARCHAR,javaType = String.class),
+           @Result(property = "module",column = "module",jdbcType = JdbcType.VARBINARY,javaType = String.class)
+    })
     List<Article> queryArticleWithModule(@Param("module")String module);
+
+    @Select("select id,title,content,module from article where creator=#{userId}")
+    @ResultMap("simpleArticleMap")
+    List<Article> queryArticleListWithCreator(@Param("userId")Integer userId);
+
+    @Select("select id,title,content,module from article where id=#{articleId}")
+    @ResultMap("simpleArticleMap")
+    Article querySimpleArticleWithId(@Param("articleId")Integer articleId);
+
 
     @UpdateProvider(type = MapperGenerator.class,method = "updateArticleString")
     @ResultType(Integer.class)

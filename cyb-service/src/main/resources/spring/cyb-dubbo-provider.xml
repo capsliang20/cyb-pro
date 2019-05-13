@@ -46,4 +46,10 @@
     <bean id="projectService" class="com.qwwaq.cyb.service.impl.ProjectServiceImpl"/>
     <dubbo:service interface="com.qwwaq.cyb.service.api.ProjectService" ref="projectService"/>
 
+    <bean id="commentService" class="com.qwwaq.cyb.service.impl.CommentServiceImpl"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.CommentService" ref="commentService"/>
+
+    <bean id="followerService" class="com.qwwaq.cyb.service.impl.FollowerServiceImpl"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.FollowerService" ref="followerService"/>
+
 </beans>

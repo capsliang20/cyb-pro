@@ -27,7 +27,6 @@ public class ArticleController {
     @Resource
     ArticleService articleService;
 
-
     /**
      *     private String title;
      *     private String content;
@@ -63,6 +62,14 @@ public class ArticleController {
         Map data = new HashMap();
         List<Article> articleList = articleService.queryArticleWithModule(module);
         data.put("articleList", articleList);
+        return ReturnType.ok("搜索成功", data);
+    }
+
+    @RequestMapping(value = "queryArticleDetail", method = RequestMethod.GET)
+    ReturnType queryArticleDetail(@Param("id")Integer id) {
+        log.info("queryArticleWithModule : article id:{}", id);
+        Map data = new HashMap();
+        data.put("project", articleService.queryArticleDetail(id));
         return ReturnType.ok("搜索成功", data);
     }
 

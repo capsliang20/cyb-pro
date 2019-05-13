@@ -33,5 +33,6 @@
 
     <dubbo:reference id="articleService" check="false" interface="com.qwwaq.cyb.service.api.ArticleService"/>
     <dubbo:reference id="projectService" check="false" interface="com.qwwaq.cyb.service.api.ProjectService"/>
-
+    <dubbo:reference id="commentService" check="false" interface="com.qwwaq.cyb.service.api.CommentService"/>
+    <dubbo:reference id="followerService" check="false" interface="com.qwwaq.cyb.service.api.FollowerService"/>
 </beans>

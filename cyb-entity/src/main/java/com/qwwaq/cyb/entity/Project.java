@@ -1,12 +1,11 @@
 package com.qwwaq.cyb.entity;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,10 +15,20 @@ public class Project implements Serializable {
     private Integer id;
     private String name;
     private String introduction;
-    private String detail;
     private String imageAddress;
-    private Integer creatorId;
-    private String creatorName;
-    private Date createDate;
     private String module;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Integer creatorId;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String creatorName;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Date createDate;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Comment> commentList;
+
+    private Integer followerNum;
+    private Integer commentNum;
+
+
 }

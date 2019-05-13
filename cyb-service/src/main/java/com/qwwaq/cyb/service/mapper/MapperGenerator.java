@@ -15,8 +15,6 @@ public class MapperGenerator {
             stringBuilder.append(" , name='").append(project.getName()).append("' ");
         if(project.getIntroduction()!=null)
             stringBuilder.append(" , introduction='").append(project.getIntroduction()).append("' ");
-        if(project.getDetail()!=null)
-            stringBuilder.append(" , detail= '").append(project.getDetail()).append("' ");
         if(project.getImageAddress()!=null)
             stringBuilder.append(" , image_address='").append(project.getImageAddress()).append("' ");
         if(project.getModule()!=null)

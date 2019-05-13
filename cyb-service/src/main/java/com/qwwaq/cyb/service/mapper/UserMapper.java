@@ -33,7 +33,7 @@ public interface UserMapper {
     User queryUser(@Param("id") Integer id);
 
     @Select("select id,name,account,introduction,image_address from user  where account =#{account}")
-    @Results(id = "loginInfo",value = {
+    @Results(id = "simpleUserInfo",value = {
             @Result(column = "id",property = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
             @Result(column = "name",property = "name",jdbcType = JdbcType.VARCHAR,javaType = String.class),
             @Result(column = "account",property = "account",jdbcType = JdbcType.VARCHAR,javaType = String.class),
@@ -41,6 +41,11 @@ public interface UserMapper {
             @Result(column = "image_address",property = "imageAddress",jdbcType = JdbcType.VARCHAR,javaType = String.class)
     })
     User queryUserByAccount(@Param("account") String account);
+
+    @Select("select id,name,account,introduction,image_address from user  where id =#{id}")
+    @ResultMap("simpleUserInfo")
+    User querySimpleUserInfoWithId(@Param("id") Integer id);
+
 
     @Select("select password from user where account =#{account}")
     @ResultType(String.class)

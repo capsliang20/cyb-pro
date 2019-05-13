@@ -1,5 +1,7 @@
 package com.qwwaq.cyb.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,11 @@ public class User implements Serializable {
     private Integer id;
     private String name;
     private String account;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
     private String introduction;
     private String imageAddress;
+
+    private Integer concernedNum;
+    private Integer followerNum;
 }

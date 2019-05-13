@@ -29,7 +29,6 @@ public class ProjectController {
     /**
      private String name;
      private String introduction;
-     private String detail;
      private String imageAddress;
      private Integer creatorId;
      private String module;
@@ -47,7 +46,6 @@ public class ProjectController {
      private String id;
      private String name;
      private String introduction;
-     private String detail;
      private String imageAddress;
      private String module;
      */
@@ -64,6 +62,16 @@ public class ProjectController {
         Map data = new HashMap();
         List<Project> projectList = projectService.queryProjectWithModule(module);
         data.put("projectList", projectList);
+        return ReturnType.ok("搜索成功", data);
+    }
+
+
+
+    @RequestMapping(value = "queryProjectDetail", method = RequestMethod.GET)
+    ReturnType queryProjectDetail(@Param("id")Integer id) {
+        log.info("queryProjectWithModule : project id:{}", id);
+        Map data = new HashMap();
+        data.put("project", projectService.queryProjectDetail(id));
         return ReturnType.ok("搜索成功", data);
     }
 
