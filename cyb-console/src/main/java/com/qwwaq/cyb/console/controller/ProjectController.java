@@ -57,10 +57,10 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "queryProjectWithModule", method = RequestMethod.GET)
-    ReturnType queryProjectWithModule(@Param("module")String module) {
-        log.info("module:{}", module);
+    ReturnType queryProjectWithModule(@Param("module")String module,@Param("userId")Integer userId) {
+        log.info("module:{}  userId:{}", module,userId);
         Map data = new HashMap();
-        List<Project> projectList = projectService.queryProjectWithModule(module);
+        List<Project> projectList = projectService.queryProjectWithModule(module,userId);
         data.put("projectList", projectList);
         return ReturnType.ok("搜索成功", data);
     }
@@ -68,10 +68,10 @@ public class ProjectController {
 
 
     @RequestMapping(value = "queryProjectDetail", method = RequestMethod.GET)
-    ReturnType queryProjectDetail(@Param("id")Integer id) {
-        log.info("queryProjectWithModule : project id:{}", id);
+    ReturnType queryProjectDetail(@Param("projectId")Integer projectId,@Param("userId") Integer userId) {
+        log.info("queryProjectWithModule : project id:{}, userId:{}", projectId,userId);
         Map data = new HashMap();
-        data.put("project", projectService.queryProjectDetail(id));
+        data.put("project", projectService.queryProjectDetail(projectId,userId));
         return ReturnType.ok("搜索成功", data);
     }
 

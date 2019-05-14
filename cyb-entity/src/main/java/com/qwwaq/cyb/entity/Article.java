@@ -1,6 +1,7 @@
 package com.qwwaq.cyb.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,14 +20,17 @@ public class Article implements Serializable {
     private String content;
     private String module;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createDate;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer creatorId;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String creatorName;
+    private String creatorImage;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<Comment> commentList;
+
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean isFollowed;
 
     private Integer followerNum;
     private Integer commentNum;

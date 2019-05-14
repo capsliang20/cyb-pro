@@ -57,19 +57,19 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "queryArticleWithModule", method = RequestMethod.GET)
-    ReturnType queryArticleWithModule(@Param("module")String module) {
-        log.info("module:{}", module);
+    ReturnType queryArticleWithModule(@Param("module")String module,@Param("userId")Integer userId) {
+        log.info("module:{} userId:{}", module,userId);
         Map data = new HashMap();
-        List<Article> articleList = articleService.queryArticleWithModule(module);
+        List<Article> articleList = articleService.queryArticleWithModule(module,userId);
         data.put("articleList", articleList);
         return ReturnType.ok("搜索成功", data);
     }
 
     @RequestMapping(value = "queryArticleDetail", method = RequestMethod.GET)
-    ReturnType queryArticleDetail(@Param("id")Integer id) {
-        log.info("queryArticleWithModule : article id:{}", id);
+    ReturnType queryArticleDetail(@Param("articleId")Integer articleId,@Param("userId") Integer userId) {
+        log.info("queryArticleWithModule : article id:{} userId:{}", articleId,userId);
         Map data = new HashMap();
-        data.put("project", articleService.queryArticleDetail(id));
+        data.put("project", articleService.queryArticleDetail(articleId,userId));
         return ReturnType.ok("搜索成功", data);
     }
 

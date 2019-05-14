@@ -21,6 +21,11 @@ public interface UserMapper {
     @ResultType(String.class)
     String queryNameById(@Param("id")Integer id);
 
+    @Select("select image_address  from user where id =#{id}")
+    @ResultType(String.class)
+    String queryImageById(@Param("id")Integer id);
+
+
     @Select("select id,name,account,password,introduction,image_address from user where id =#{id}")
     @Results(id = "userMap",value = {
             @Result(column = "id",property = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),

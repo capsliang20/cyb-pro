@@ -21,6 +21,9 @@ public class User implements Serializable {
     private String introduction;
     private String imageAddress;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Boolean isFollowed;
+
     private Integer concernedNum;
     private Integer followerNum;
 }

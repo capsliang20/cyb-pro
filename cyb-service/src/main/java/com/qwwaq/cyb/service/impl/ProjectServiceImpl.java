@@ -42,11 +42,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> queryProjectWithModule(String module) {
+    public List<Project> queryProjectWithModule(String module,Integer userId) {
         List<Project> projectList = projectMapper.queryProjectWithModule(module);
         projectList.forEach(project -> {
             project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
             project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
+            project.setIsFollowed(followerMapper.isFollowed(Follower.PROJECT_FOLLOWER, project.getId(), userId)==null? Boolean.FALSE:Boolean.TRUE);
         });
         return projectList;
     }
@@ -72,17 +73,20 @@ public class ProjectServiceImpl implements ProjectService {
         projectList.forEach(project -> {
             project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
             project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
+            project.setIsFollowed(Boolean.TRUE);
         });
         return projectList;
     }
 
 
     @Override
-    public Project queryProjectDetail(Integer id) {
-        Project project = projectMapper.queryProject(id);
+    public Project queryProjectDetail(Integer projectId,Integer userId) {
+        Project project = projectMapper.queryProject(userId);
         List<Comment> commentList = commentService.queryCommentList(Comment.PROJECT_COMMENT, project.getId());
         project.setCommentList(commentList);
-//        project.setCommentNum(commentList.size());
+        project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
+        project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
+        project.setIsFollowed(followerMapper.isFollowed(Follower.PROJECT_FOLLOWER, project.getId(), userId)==null? Boolean.FALSE:Boolean.TRUE);
         return project;
     }
 

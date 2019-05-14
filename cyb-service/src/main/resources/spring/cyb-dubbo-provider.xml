@@ -52,4 +52,7 @@
     <bean id="followerService" class="com.qwwaq.cyb.service.impl.FollowerServiceImpl"/>
     <dubbo:service interface="com.qwwaq.cyb.service.api.FollowerService" ref="followerService"/>
 
+    <bean id="recommendService" class="com.qwwaq.cyb.service.impl.RecommendServiceImpl"/>
+    <dubbo:service interface="com.qwwaq.cyb.service.api.RecommendService" ref="recommendService"/>
+
 </beans>

@@ -56,7 +56,7 @@ public class UserController {
         Map data = new HashMap();
         String verifyCode = redisTemplate.opsForValue().get(account);
         if (code != null && code.equals(verifyCode)) {
-            User user = new User(null, name, account, password,"",MessageUtil.NET_PATH+"default.png",null,null);
+            User user = new User(null, name, account, password,"",MessageUtil.NET_PATH+"default.png",null,null,null);
             Integer userId = userService.insertUser(user);
             if (userId != null && userId != 0) {
                 redisTemplate.opsForValue().set(httpServletRequest.getSession().getId(), account, MessageUtil.CACHE_TIME, TimeUnit.MINUTES);
@@ -73,7 +73,7 @@ public class UserController {
     @RequestMapping(value = "update",method = RequestMethod.GET)
     ReturnType update(@Param("id") Integer id,@Param("name") String name,@Param("introduction") String introduction,@Param("imageAddress") String imageAddress){
         log.info("update controller info : id={}, name={}, introduction={}, imageAddress={}",id,name,introduction,imageAddress );
-        User user=new User(id, name, null, null, introduction, imageAddress,null,null);
+        User user=new User(id, name, null, null, introduction, imageAddress,null,null,null);
         userService.update(user);
         return ReturnType.ok("更新成功");
     }

@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
         userList.forEach(user -> {
             user.setFollowerNum(followerMapper.countFollowers(Follower.USER_FOLLOWER, user.getId()));
             user.setConcernedNum(followerMapper.countConcernedNum(Follower.USER_FOLLOWER, user.getId()));
+            user.setIsFollowed(Boolean.TRUE);
         });
         return userList;
     }
@@ -105,6 +106,7 @@ public class UserServiceImpl implements UserService {
         userList.forEach(user -> {
             user.setFollowerNum(followerMapper.countFollowers(Follower.USER_FOLLOWER, user.getId()));
             user.setConcernedNum(followerMapper.countConcernedNum(Follower.USER_FOLLOWER, user.getId()));
+            user.setIsFollowed(followerMapper.isFollowed(Follower.USER_FOLLOWER, user.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
         });
         return userList;
     }

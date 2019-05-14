@@ -1,18 +1,14 @@
 package com.qwwaq.cyb.service;
 
 import com.alibaba.fastjson.JSON;
-import com.qwwaq.cyb.entity.Article;
-import com.qwwaq.cyb.entity.Comment;
-import com.qwwaq.cyb.entity.Project;
-import com.qwwaq.cyb.entity.User;
-import com.qwwaq.cyb.service.api.ArticleService;
-import com.qwwaq.cyb.service.api.CommentService;
-import com.qwwaq.cyb.service.api.ProjectService;
-import com.qwwaq.cyb.service.api.UserService;
+import com.qwwaq.cyb.entity.*;
+import com.qwwaq.cyb.service.api.*;
 
 import com.qwwaq.cyb.service.mapper.ArticleMapper;
 import com.qwwaq.cyb.service.mapper.CommentMapper;
+import com.qwwaq.cyb.service.mapper.FollowerMapper;
 import com.qwwaq.cyb.service.mapper.ProjectMapper;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,14 +43,16 @@ public class CybServiceApplicationTests {
     @Resource
     ProjectService projectService;
 
+    @Resource
+    FollowerMapper followerMapper;
+
+    @Resource
+    RecommendService recommendService;
+
+
     @Test
     public void contextLoads() {
-       Article article=articleService.queryArticleDetail(1);
-        System.out.println(JSON.toJSONString(article));
-
-        Project project=projectService.queryProjectDetail(1);
-        System.out.println(JSON.toJSONString(project));
-        
+        System.out.println(JSON.toJSONString(recommendService.recommend(Recommend.USER_RECOMMEND, 1)));
     }
 
 }

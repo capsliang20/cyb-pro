@@ -2,10 +2,7 @@ package com.qwwaq.cyb.console.controller;
 
 import com.qwwaq.cyb.entity.Article;
 import com.qwwaq.cyb.entity.ReturnType;
-import com.qwwaq.cyb.service.api.ArticleService;
-import com.qwwaq.cyb.service.api.FollowerService;
-import com.qwwaq.cyb.service.api.ProjectService;
-import com.qwwaq.cyb.service.api.UserService;
+import com.qwwaq.cyb.service.api.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +28,9 @@ public class HomepageController {
 
     @Resource
     UserService userService;
+
+    @Resource
+    RecommendService recommendService;
 
     @RequestMapping(value = "follow", method = RequestMethod.GET)
     ReturnType follow(@Param("type")Integer type,@Param("targetId")Integer targetId,@Param("userId") Integer userId) {
@@ -92,6 +92,14 @@ public class HomepageController {
         Map data=new HashMap();
         data.put("userList", userService.listUsersWithFollower(userId));
         return ReturnType.ok("搜索成功",data);
+    }
+
+    @RequestMapping(value = "recommend", method = RequestMethod.GET)
+    ReturnType recommend(@Param("type") Integer type,@Param("userId") Integer userId) {
+        log.info("recommend type:{} userId:{}",type, userId);
+        Map data=new HashMap();
+        data.put("recommendList", recommendService.recommend(type, userId));
+        return ReturnType.ok("获取推荐数据成功",data);
     }
 
 

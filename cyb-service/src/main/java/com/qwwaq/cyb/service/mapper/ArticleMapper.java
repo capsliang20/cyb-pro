@@ -24,25 +24,21 @@ public interface ArticleMapper {
             @Result(property = "createDate",column = "create_date",jdbcType = JdbcType.DATE,javaType = Date.class),
             @Result(property = "creatorId",column = "creator",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
             @Result(property = "creatorName",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryNameById")),
+            @Result(property = "creatorImage",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryImageById")),
             @Result(property = "module",column = "module",jdbcType = JdbcType.VARBINARY,javaType = String.class)
     })
     Article queryArticle(@Param("id") Integer id);
 
-    @Select("select id,title,content,module from article where module=#{module}")
-    @Results(id = "simpleArticleMap",value = {
-            @Result(property = "id",column = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
-            @Result(property = "title",column = "title",jdbcType = JdbcType.VARCHAR,javaType = String.class),
-            @Result(property = "content",column = "content",jdbcType = JdbcType.VARCHAR,javaType = String.class),
-           @Result(property = "module",column = "module",jdbcType = JdbcType.VARBINARY,javaType = String.class)
-    })
+    @Select("select id,title,content,create_date,creator,module from article where module=#{module}")
+    @ResultMap("articleMap")
     List<Article> queryArticleWithModule(@Param("module")String module);
 
-    @Select("select id,title,content,module from article where creator=#{userId}")
-    @ResultMap("simpleArticleMap")
+    @Select("select id,title,content,create_date,creator,module from article where creator=#{userId}")
+    @ResultMap("articleMap")
     List<Article> queryArticleListWithCreator(@Param("userId")Integer userId);
 
-    @Select("select id,title,content,module from article where id=#{articleId}")
-    @ResultMap("simpleArticleMap")
+    @Select("select id,title,content,create_date,creator,module from article where id=#{articleId}")
+    @ResultMap("articleMap")
     Article querySimpleArticleWithId(@Param("articleId")Integer articleId);
 
 

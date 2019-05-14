@@ -21,6 +21,8 @@ public interface CommentMapper {
             @Result(property = "targetId",column = "target_id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
             @Result(property = "userId",column = "user_id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
             @Result(property = "userName",column = "user_id",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryNameById")),
+            @Result(property = "userImage",column = "user_id",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryImageById")),
+
     })
     Comment queryComment(@Param("id") Integer id);
 

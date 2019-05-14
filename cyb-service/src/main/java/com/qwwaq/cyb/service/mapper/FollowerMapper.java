@@ -23,7 +23,7 @@ public interface FollowerMapper {
     Integer countConcernedNum(@Param("type")Integer type,@Param("userId") Integer userId);
 
 
-    @Select("select count(id) from follower where type=#{type} and target_id=#{targetId} and user_id=#{userId}")
+    @Select("select id from follower where type=#{type} and target_id=#{targetId} and user_id=#{userId}")
     @ResultType(Integer.class)
     Integer isFollowed(@Param("type")Integer type,@Param("targetId") Integer targetId,@Param("userId") Integer userId);
 

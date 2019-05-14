@@ -9,6 +9,7 @@ import com.qwwaq.cyb.service.api.CommentService;
 import com.qwwaq.cyb.service.mapper.ArticleMapper;
 import com.qwwaq.cyb.service.mapper.CommentMapper;
 import com.qwwaq.cyb.service.mapper.FollowerMapper;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,11 +48,12 @@ public class ArticleServiceImpl implements ArticleService {
 
 
     @Override
-    public List<Article> queryArticleWithModule(String module) {
+    public List<Article> queryArticleWithModule(String module,Integer userId) {
         List<Article> articleList = articleMapper.queryArticleWithModule(module);
         articleList.forEach(article -> {
             article.setFollowerNum(followerMapper.countFollowers(Follower.ARTICLE_FOLLOWER, article.getId()));
             article.setCommentNum(commentMapper.countComment(Comment.ARTICLE_COMMENT, article.getId()));
+            article.setIsFollowed(followerMapper.isFollowed(Follower.ARTICLE_FOLLOWER, article.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
         });
         return articleList;
     }
@@ -77,17 +79,20 @@ public class ArticleServiceImpl implements ArticleService {
         articleList.forEach(article -> {
             article.setCommentNum(commentMapper.countComment(Comment.ARTICLE_COMMENT, article.getId()));
             article.setFollowerNum(followerMapper.countFollowers(Follower.ARTICLE_FOLLOWER, article.getId()));
+            article.setIsFollowed(Boolean.TRUE);
         });
         return articleList;
     }
 
 
     @Override
-    public Article queryArticleDetail(Integer id) {
-        Article article = articleMapper.queryArticle(id);
+    public Article queryArticleDetail(Integer articleId,Integer userId) {
+        Article article = articleMapper.queryArticle(articleId);
         List<Comment> commentList = commentService.queryCommentList(Comment.ARTICLE_COMMENT, article.getId());
         article.setCommentList(commentList);
         article.setCommentNum(commentList.size());
+        article.setFollowerNum(followerMapper.countFollowers(Follower.ARTICLE_FOLLOWER, article.getId()));
+        article.setIsFollowed(followerMapper.isFollowed(Follower.ARTICLE_FOLLOWER, article.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
         return article;
     }
 
