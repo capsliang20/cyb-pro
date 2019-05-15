@@ -3,11 +3,13 @@ package com.qwwaq.cyb.service.impl;
 import com.qwwaq.cyb.entity.Comment;
 import com.qwwaq.cyb.entity.Follower;
 import com.qwwaq.cyb.entity.Project;
+import com.qwwaq.cyb.entity.User;
 import com.qwwaq.cyb.service.api.CommentService;
 import com.qwwaq.cyb.service.api.ProjectService;
 import com.qwwaq.cyb.service.mapper.CommentMapper;
 import com.qwwaq.cyb.service.mapper.FollowerMapper;
 import com.qwwaq.cyb.service.mapper.ProjectMapper;
+import com.qwwaq.cyb.service.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Resource
     FollowerMapper followerMapper;
 
+    @Resource
+    UserMapper userMapper;
+
     @Override
     public Integer createProject(Project project) {
         return projectMapper.insertProject(project);
@@ -45,6 +50,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> queryProjectWithModule(String module,Integer userId) {
         List<Project> projectList = projectMapper.queryProjectWithModule(module);
         projectList.forEach(project -> {
+            User creator =userMapper.querySimpleUserInfo(project.getCreatorId());
+            creator.setIsFollowed(followerMapper.isFollowed(Follower.USER_FOLLOWER, creator.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
+            project.setCreator(creator);
             project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
             project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
             project.setIsFollowed(followerMapper.isFollowed(Follower.PROJECT_FOLLOWER, project.getId(), userId)==null? Boolean.FALSE:Boolean.TRUE);
@@ -56,6 +64,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> listProjectsWithCreator(Integer userId) {
         List<Project> projectList = projectMapper.queryProjectListWithCreator(userId);
         projectList.forEach(project -> {
+            User creator =userMapper.querySimpleUserInfo(project.getCreatorId());
+            creator.setIsFollowed(followerMapper.isFollowed(Follower.USER_FOLLOWER, creator.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
+            project.setCreator(creator);
             project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
             project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
         });
@@ -71,6 +82,9 @@ public class ProjectServiceImpl implements ProjectService {
             projectList.add(projectMapper.querySimpleProjectWithId(targetId));
         });
         projectList.forEach(project -> {
+            User creator =userMapper.querySimpleUserInfo(project.getCreatorId());
+            creator.setIsFollowed(followerMapper.isFollowed(Follower.USER_FOLLOWER, creator.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
+            project.setCreator(creator);
             project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
             project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
             project.setIsFollowed(Boolean.TRUE);
@@ -84,6 +98,9 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = projectMapper.queryProject(userId);
         List<Comment> commentList = commentService.queryCommentList(Comment.PROJECT_COMMENT, project.getId());
         project.setCommentList(commentList);
+        User creator =userMapper.querySimpleUserInfo(project.getCreatorId());
+        creator.setIsFollowed(followerMapper.isFollowed(Follower.USER_FOLLOWER, creator.getId(), userId)==null?Boolean.FALSE:Boolean.TRUE);
+        project.setCreator(creator);
         project.setFollowerNum(followerMapper.countFollowers(Follower.PROJECT_FOLLOWER, project.getId()));
         project.setCommentNum(commentMapper.countComment(Comment.PROJECT_COMMENT, project.getId()));
         project.setIsFollowed(followerMapper.isFollowed(Follower.PROJECT_FOLLOWER, project.getId(), userId)==null? Boolean.FALSE:Boolean.TRUE);

@@ -37,6 +37,15 @@ public interface UserMapper {
     })
     User queryUser(@Param("id") Integer id);
 
+    @Select("select id,name,introduction,image_address from user where id =#{id}")
+    @Results(id = "simpleUserMap",value = {
+            @Result(column = "id",property = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
+            @Result(column = "name",property = "name",jdbcType = JdbcType.VARCHAR,javaType = String.class),
+            @Result(column = "introduction",property = "introduction",jdbcType = JdbcType.VARCHAR,javaType = String.class),
+            @Result(column = "image_address",property = "imageAddress",jdbcType = JdbcType.VARCHAR,javaType = String.class)
+    })
+    User querySimpleUserInfo(@Param("id") Integer id);
+
     @Select("select id,name,account,introduction,image_address from user  where account =#{account}")
     @Results(id = "simpleUserInfo",value = {
             @Result(column = "id",property = "id",jdbcType = JdbcType.INTEGER,javaType = Integer.class),

@@ -2,6 +2,7 @@ package com.qwwaq.cyb.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +23,11 @@ public class Article implements Serializable {
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createDate;
+    User creator;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer creatorId;
-    private String creatorName;
-    private String creatorImage;
+//    private String creatorName;
+//    private String creatorImage;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<Comment> commentList;
 

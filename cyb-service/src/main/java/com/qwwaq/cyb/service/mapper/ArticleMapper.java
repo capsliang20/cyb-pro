@@ -23,8 +23,6 @@ public interface ArticleMapper {
             @Result(property = "content",column = "content",jdbcType = JdbcType.VARCHAR,javaType = String.class),
             @Result(property = "createDate",column = "create_date",jdbcType = JdbcType.DATE,javaType = Date.class),
             @Result(property = "creatorId",column = "creator",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
-            @Result(property = "creatorName",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryNameById")),
-            @Result(property = "creatorImage",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryImageById")),
             @Result(property = "module",column = "module",jdbcType = JdbcType.VARBINARY,javaType = String.class)
     })
     Article queryArticle(@Param("id") Integer id);

@@ -25,8 +25,6 @@ public interface ProjectMapper {
             @Result(property = "imageAddress",column = "image_address",jdbcType = JdbcType.VARCHAR,javaType = String.class),
             @Result(property = "createDate",column = "create_date",jdbcType = JdbcType.DATE,javaType = Date.class),
             @Result(property = "creatorId",column = "creator",jdbcType = JdbcType.INTEGER,javaType = Integer.class),
-            @Result(property = "creatorName",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryNameById")),
-            @Result(property = "creatorImage",column = "creator",one=@One(select = "com.qwwaq.cyb.service.mapper.UserMapper.queryImageById")),
             @Result(property = "module",column = "module",jdbcType = JdbcType.VARBINARY,javaType = String.class)
     })
     Project queryProject(@Param("id") Integer id);

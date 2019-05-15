@@ -1,6 +1,7 @@
 package com.qwwaq.cyb.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -19,9 +20,12 @@ public class Project implements Serializable {
     private String imageAddress;
     private String module;
 
+
+    User creator;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer creatorId;
-    private String creatorName;
-    private String creatorImage;
+//    private String creatorName;
+//    private String creatorImage;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createDate;
     @JsonInclude(JsonInclude.Include.NON_NULL)
