@@ -107,8 +107,8 @@ public class MessageUtil {
         final String product="Dysmsapi";
         final String domain = "dysmsapi.aliyuncs.com";
 
-        final String accessKeyId="LTAIcxkZHWikXqxx";
-        final String accessKeySecret="5esNdJU081PPJwl6btmnNmYrmi2UKg";
+        final String accessKeyId="";
+        final String accessKeySecret="";
 
 
         try {
