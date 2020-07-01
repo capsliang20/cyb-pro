@@ -37,7 +37,7 @@
         <dubbo-configcenter-zookeeper.version>2.7.0</dubbo-configcenter-zookeeper.version>
         <dubbo-metadata-report-zookeeper.version>2.7.0</dubbo-metadata-report-zookeeper.version>
         <dubbo-metadata-report-redis.version>2.7.0</dubbo-metadata-report-redis.version>
-        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <dubbo-qos.version>2.7.0</dubbo-qos.version>
         <fastjson.version>1.2.47</fastjson.version>
     </properties>
